@@ -1,0 +1,2 @@
+# pokedex
+simple js app
