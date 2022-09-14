@@ -4,19 +4,17 @@ let pokemonList = [
   { name: "Mimikyu", height: 1, types: ["Ghost", "Fairy"] },
 ];
 
-//for loop to write out the full list of pokemon defined thus far and call out specific pokemon over a certain height
-for (let i = 0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height > 3) {
+//forEach function to write out the full list of pokemon defined thus far and call out specific pokemon over a certain height
+pokemonList.forEach(function (pokemon) {
+  if (pokemon.height > 3) {
     document.write(
-      pokemonList[i].name +
+      pokemon.name +
         " (height: " +
-        pokemonList[i].height +
+        pokemon.height +
         ")" +
         " - Wow, that's big!<br>"
     );
   } else {
-    document.write(
-      pokemonList[i].name + " (height: " + pokemonList[i].height + ")<br>"
-    );
+    document.write(pokemon.name + " (height: " + pokemon.height + ")<br>");
   }
-}
+});
