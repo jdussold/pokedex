@@ -27,7 +27,7 @@ let pokemonRepository = (function () {
     return repository;
   }
 
-  //defines function to log details for pokemon that is clicked
+  //defines function to log name for pokemon that is clicked
   function showDetails(pokemon) {
     console.log(pokemon.name);
   }
