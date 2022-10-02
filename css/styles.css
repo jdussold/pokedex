@@ -59,7 +59,8 @@ header {
   color: #25316d;
   font-size: 16px;
   font-weight: bold;
-  padding: 6px 24px;
+  padding: 0;
+  width: 150px;
   text-decoration: none;
 }
 
@@ -73,13 +74,13 @@ header {
   top: 1px;
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 650px) {
   .pokemon-list {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media all and (min-width: 500px) and (max-width: 750px) {
+@media all and (min-width: 650px) and (max-width: 1050px) {
   .pokemon-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
