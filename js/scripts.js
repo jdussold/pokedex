@@ -1,14 +1,14 @@
-//defining the initial pokemon repository list. Changing the "limit" parameter will result in more or less pokemon being returned from the api
+//defining pokemon repository. Changing the "limit" parameter will result in more or less pokemon being returned from the api
 const pokemonRepository = (function () {
   const pokemonList = [];
   const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
-  //defines function to add new pokemon to list, as long as each new pokemon has a "name", "height", and "types" defined.
+  //defines function to add new pokemon to list and performs some basic validation
   function add(pokemon) {
     if (
       typeof pokemon === "object" &&
-      "name" in pokemon //&&
-      //"detailsUrl" in pokemon
+      "name" in pokemon &&
+      "detailsUrl" in pokemon
     ) {
       pokemonList.push(pokemon);
     } else {
