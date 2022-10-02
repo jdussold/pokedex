@@ -81,6 +81,7 @@ const pokemonRepository = (function () {
     });
   }
 
+  //The pokemonRepository is defined and housed within an IIFE (Immediately invoked function expression).  This way, you can't directly access it from the outside, which is what protects it.  This makes it nearly impossible to accidentally modify(or access) the shared state, since you always need to explicitly access it via the repository's exposed functions.  The IIFE then returns an object with the following keys.  This means whenever you access the pokemonRepository somewhere in the app, it will represent an object with these keys.
   return {
     add: add,
     getAll: getAll,
