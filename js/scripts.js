@@ -23,9 +23,9 @@ const pokemonRepository = (function () {
 
   //defines function to add new items/buttons to page.  This takes all the pokemon from the repository and creates a new "li" element and button.  Buttons are created using the pokemon name as their innerText.  Lastly an eventListener is added to listen for mouse clicks and log the details in the console.
   function addListItem(pokemon) {
-    let listOfPokemon = document.querySelector(".pokemon-list");
-    let listItem = document.createElement("li");
-    let button = document.createElement("button");
+    const listOfPokemon = document.querySelector(".pokemon-list");
+    const listItem = document.createElement("li");
+    const button = document.createElement("button");
     button.innerText = pokemon.name;
     button.classList.add("pokemonButton");
     listItem.appendChild(button);
@@ -43,7 +43,7 @@ const pokemonRepository = (function () {
       })
       .then(function (json) {
         json.results.forEach(function (item) {
-          let pokemon = {
+          const pokemon = {
             name: item.name,
             detailsUrl: item.url,
           };
@@ -58,7 +58,7 @@ const pokemonRepository = (function () {
 
   //after fetching the item detail url for each pokemon in our list of 150 via the "loadList" function, this function will go to each detailsUrl and provide the image location, height, and types for each pokemon in our list.
   function loadDetails(item) {
-    let url = item.detailsUrl;
+    const url = item.detailsUrl;
     return fetch(url)
       .then(function (response) {
         return response.json();
