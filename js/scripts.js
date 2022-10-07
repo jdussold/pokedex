@@ -121,10 +121,14 @@ const pokemonRepository = (function () {
     const pokemonHeight = document.createElement("p");
     pokemonHeight.innerText = `Height: ${pokemon.height}`;
 
+    const pokemonType = document.createElement("p");
+    pokemonType.innerText = `Type: ${pokemon.types[0].type.name}`;
+
     modal.appendChild(closeButtonElement);
     modal.appendChild(pokemonName);
     modal.appendChild(pokemonImage);
     modal.appendChild(pokemonHeight);
+    modal.appendChild(pokemonType);
     modalContainer.appendChild(modal);
 
     modalContainer.addEventListener("click", (e) => {
