@@ -1,4 +1,5 @@
-//defining pokemon repository. Changing the "limit" parameter will result in more or less pokemon being returned from the api
+//defining pokemon repository. Changing the "limit" parameter will result in
+//more or less pokemon being returned from the api
 const pokemonRepository = (function () {
   const pokemonList = [];
   const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
@@ -22,7 +23,11 @@ const pokemonRepository = (function () {
     return pokemonList;
   }
 
-  //defines function to add new items/buttons to page.  This takes all the pokemon from the repository and creates a new "li" element and button.  Buttons are created using the pokemon name as their innerText.  Lastly an eventListener is added to listen for mouse clicks and log the details in the console.
+  //defines function to add new items/buttons to page.  This takes all the
+  //pokemon from the repository and creates a new "li" element and button.
+  //Buttons are created using the pokemon name as their innerText.  Lastly an
+  //eventListener is added to listen for mouse clicks and log the details in the
+  //console.
   function addListItem(pokemon) {
     const listOfPokemon = document.querySelector(".pokemon-list");
     const listItem = document.createElement("li");
@@ -36,7 +41,12 @@ const pokemonRepository = (function () {
     });
   }
 
-  //the following function fetches a list of 150 pokemon from the api endpoint that was defined as "apiUrl" earlier.  It returns this list in a JSON format  and then goes through each item in the list and pulls just the item name (pokemon name) and item details url from the item list.  Using the "add" function that was defined above, each new pokemon is pushed to the pokemon repository.
+  //the following function fetches a list of 150 pokemon from the api endpoint
+  //that was defined as "apiUrl" earlier.  It returns this list in a JSON format
+  //and then goes through each item in the list and pulls just the item name
+  //(pokemon name) and item details url from the item list.  Using the "add"
+  //function that was defined above, each new pokemon is pushed to the pokemon
+  //repository.
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -57,7 +67,9 @@ const pokemonRepository = (function () {
       });
   }
 
-  //after fetching the item detail url for each pokemon in our list of 150 via the "loadList" function, this function will go to each detailsUrl and provide the image location, height, and types for each pokemon in our list.
+  //after fetching the item detail url for each pokemon in our list of 150 via
+  //the "loadList" function, this function will go to each detailsUrl and
+  //provide the image location, height, and types for each pokemon in our list.
   function loadDetails(item) {
     const url = item.detailsUrl;
     return fetch(url)
@@ -75,7 +87,10 @@ const pokemonRepository = (function () {
       });
   }
 
-  //defines a function to log details (image url, height, and types) for pokemon that is clicked.  This will be added to the bottom of the console log.  Reminder that the console log is pre-populated with all the names and detailsURL for all pokemon in our list due to our "loadList" function above.
+  //defines a function to log details (image url, height, and types) for pokemon
+  //that is clicked.  This will be added to the bottom of the console log.
+  //Reminder that the console log is pre-populated with all the names and
+  //detailsURL for all pokemon in our list due to our "loadList" function above.
   function showDetails(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function () {
       showModal(pokemon);
@@ -134,7 +149,14 @@ const pokemonRepository = (function () {
     }
   });
 
-  //The pokemonRepository is defined and housed within an IIFE (Immediately invoked function expression).  This way, you can't directly access it from the outside, which is what protects it.  This makes it nearly impossible to accidentally modify(or access) the shared state, since you always need to explicitly access it via the repository's exposed functions.  The IIFE then returns an object with the following keys.  This means whenever you access the pokemonRepository somewhere in the app, it will represent an object with these keys.
+  //The pokemonRepository is defined and housed within an IIFE (Immediately
+  //invoked function expression).  This way, you can't directly access it from
+  //the outside, which is what protects it.  This makes it nearly impossible to
+  //accidentally modify(or access) the shared state, since you always need to
+  //explicitly access it via the repository's exposed functions.  The IIFE then
+  //returns an object with the following keys.  This means whenever you access
+  //the pokemonRepository somewhere in the app, it will represent an object with
+  //these keys.
   return {
     add: add,
     getAll: getAll,
