@@ -80,6 +80,8 @@ header {
 .pokemonButton:hover {
   background: linear-gradient(to bottom, #97d2ec 5%, #66bee4 100%);
   background-color: #019ad2;
+  transform: scale(1.1, 1.1);
+  transition: 0.3s;
 }
 
 .pokemonButton:active {
