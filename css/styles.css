@@ -54,6 +54,8 @@ header {
   margin: 2% 5%;
   list-style-type: none;
   display: grid;
+  justify-items: center;
+  align-items: center;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(10, 1fr);
   grid-column-gap: 5px;
