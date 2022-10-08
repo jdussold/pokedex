@@ -63,7 +63,7 @@ header {
 .pokemonButton {
   margin: 5px;
   background: #fdee22;
-  border-radius: 6px;
+  border-radius: 5px;
   border: 2px solid #25316d;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
@@ -71,7 +71,7 @@ header {
   color: #25316d;
   font-size: 16px;
   font-weight: bold;
-  padding: 0;
+  padding: 5px 0;
   width: 150px;
   text-transform: capitalize;
   text-decoration: none;
