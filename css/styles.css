@@ -19,25 +19,36 @@ Button Color: #FEF5AC
 }
 
 body {
-  height: 100vh;
   font-family: "Open Sans", sans-serif;
   font-weight: 400;
+  font-size: var(--font-size-1);
   line-height: 1.6;
   color: var(--text-color);
   background: var(--background-color);
 }
 
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
 header {
-  margin: 20px auto;
-  text-align: center;
   position: fixed;
+  text-align: center;
   width: 100%;
   padding: 0 5%;
   height: 75px;
+  background-color: var(--text-color);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .logo {
-  height: 140px;
+  height: 75px;
+}
+
+.list-container {
+  display: block;
+  padding-top: 75px;
 }
 .pokemon-list {
   margin: 2% 5%;
@@ -54,6 +65,7 @@ header {
   background: #fdee22;
   border-radius: 6px;
   border: 2px solid #25316d;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
   display: inline-block;
   cursor: pointer;
   color: #25316d;
@@ -85,6 +97,10 @@ header {
   .pokemon-list {
     grid-template-columns: 1fr 1fr 1fr;
   }
+}
+
+#modal-container {
+  display: none;
 }
 
 #modal-container.is-visible {

@@ -4,22 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple JS App</title>
+    <title>Pokedex App</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css" />
     <link
       href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header class="page-header">
-      <a href="index.html">  
-        <img src="img/pokedex-logo.svg" alt="a text logo that says Pokedex" class="logo"><br>
+      <a href="index.html">
+        <img
+          src="img/pokedex-logo.svg"
+          alt="a text logo that says Pokedex"
+          class="logo"
+        /><br />
       </a>
-    <div>
+    </header>
+
+    <div class="list-container">
       <ul class="pokemon-list"></ul>
     </div>
+
     <div id="modal-container"></div>
+
     <script src="js/promise-polyfill.js"></script>
     <script src="js/fetch-polyfill.js"></script>
     <script src="js/scripts.js"></script>
