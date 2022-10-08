@@ -142,6 +142,9 @@ header {
   border: 0;
   background: none;
   color: #777;
+}
+
+.modal-close:hover {
   text-decoration: underline;
 }
 
