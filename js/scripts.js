@@ -2,8 +2,7 @@
 //more or less pokemon being returned from the api
 const pokemonRepository = (function () {
   const pokemonList = [];
-  const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
-  const pokemonListElement = document.querySelector(".pokemon-list");
+  const apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=90";
 
   //defines function to add new pokemon to list and performs some basic validation
   function add(pokemon) {
@@ -23,25 +22,43 @@ const pokemonRepository = (function () {
     return pokemonList;
   }
 
-  //defines function to add new items/buttons to page.  This takes all the
+  //defines function to add new pokemon cards and buttons to page.  This takes all the
   //pokemon from the repository and creates a new "li" element and button.
   //Buttons are created using the pokemon name as their innerText.  Lastly an
-  //eventListener is added to listen for mouse clicks and log the details in the
-  //console.
+  //eventListener is added to listen for mouse clicks.
   function addListItem(pokemon) {
-    const listOfPokemon = document.querySelector(".pokemon-list");
-    const listItem = document.createElement("li");
-    const button = document.createElement("button");
-    button.innerText = pokemon.name;
-    button.classList.add("pokemonButton");
-    listItem.appendChild(button);
-    listOfPokemon.appendChild(listItem);
-    button.addEventListener("click", function (event) {
-      showDetails(pokemon);
+    pokemonRepository.loadDetails(pokemon).then(function () {
+      const $row = $(".row");
+      const $card = $(
+        '<div class="card bg-light border-dark text-center mx-auto m-3 list-group-item-action" style="width:300px"  data-toggle="modal" data-target="#modal"></div>'
+      );
+      const $image = $(
+        '<img class="card-img-top mx-auto" alt="Card image" style="width:30%" />'
+      );
+      $image.attr("src", pokemon.imageUrlFront);
+      const $cardBody = $('<div class="card-body"></div>');
+      const $cardTitle = $("<h4 class='card-title' >" + pokemon.name + "</h4>");
+      const $seeProfile = $(
+        '<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal">See Profile</button>'
+      );
+
+      $row.append($card);
+      //append image to cards
+      $card.append($image);
+      $card.append($cardBody);
+      $cardBody.append($cardTitle);
+      $cardBody.append($seeProfile);
+
+      $seeProfile.on("click", function (event) {
+        showDetails(pokemon);
+      });
+      $card.on("click", function (event) {
+        showDetails(pokemon);
+      });
     });
   }
 
-  //the following function fetches a list of 150 pokemon from the api endpoint
+  //the following function fetches a list of pokemon from the api endpoint
   //that was defined as "apiUrl" earlier.  It returns this list in a JSON format
   //and then goes through each item in the list and pulls just the item name
   //(pokemon name) and item details url from the item list.  Using the "add"
@@ -69,7 +86,7 @@ const pokemonRepository = (function () {
 
   //after fetching the item detail url for each pokemon in our list of 150 via
   //the "loadList" function, this function will go to each detailsUrl and
-  //provide the image location, height, and types for each pokemon in our list.
+  //provide specific details for each pokemon in our list.
   function loadDetails(item) {
     const url = item.detailsUrl;
     return fetch(url)
@@ -78,16 +95,24 @@ const pokemonRepository = (function () {
       })
       .then(function (details) {
         // Now we add the details to the item
-        item.imageUrl = details.sprites.front_default;
+        item.imageUrlFront = details.sprites.front_default;
+        item.imageUrlBack = details.sprites.back_default;
         item.height = details.height;
-        item.types = details.types;
+        item.types = [];
+        for (let i = 0; i < details.types.length; i++) {
+          item.types.push(" " + details.types[i].type.name);
+        }
+        item.abilities = [];
+        for (let i = 0; i < details.abilities.length; i++) {
+          item.abilities.push(" " + details.abilities[i].ability.name);
+        }
       })
       .catch(function (e) {
         console.error(e);
       });
   }
 
-  //defines a function to log details (image url, height, and types) for pokemon
+  //defines a function to log details (i.e. image url, height, and types) for pokemon
   //that is clicked.  This will be added to the bottom of the console log.
   //Reminder that the console log is pre-populated with all the names and
   //detailsURL for all pokemon in our list due to our "loadList" function above.
@@ -97,61 +122,30 @@ const pokemonRepository = (function () {
     });
   }
 
-  function showModal(pokemon) {
-    const modalContainer = document.querySelector("#modal-container");
-    //clear existing content
-    modalContainer.innerHTML = "";
+  function showModal(item) {
+    const modalBody = $(".modal-body");
+    const modalTitle = $(".modal-title");
 
-    const modal = document.createElement("div");
-    modal.classList.add("modal");
+    //Clear modal content
+    modalTitle.empty();
+    modalBody.empty();
 
-    //add close button to modal
-    const closeButtonElement = document.createElement("button");
-    closeButtonElement.classList.add("modal-close");
-    closeButtonElement.innerText = "Close";
-    closeButtonElement.addEventListener("click", hideModal);
+    const nameElement = $("<h1>" + item.name + "</h1>");
+    const imageElementFront = $('<img class="modal-img" style="width:50%">');
+    imageElementFront.attr("src", item.imageUrlFront);
+    const imageElementBack = $('<img class="modal-img" style="width:50%">');
+    imageElementBack.attr("src", item.imageUrlBack);
+    const heightElement = $("<p>" + "Height: " + item.height + "</p>");
+    const typesElement = $("<p>" + "Types: " + item.types + "</p>");
+    const abilitiesElement = $("<p>" + "Abilities: " + item.abilities + "</p>");
 
-    //add content to modal
-    const pokemonImage = document.createElement("img");
-    pokemonImage.src = pokemon.imageUrl;
-
-    const pokemonName = document.createElement("h1");
-    pokemonName.innerText = pokemon.name;
-
-    const pokemonHeight = document.createElement("p");
-    pokemonHeight.innerText = `Height: ${pokemon.height}`;
-
-    const pokemonType = document.createElement("p");
-    pokemonType.innerText = `Type: ${pokemon.types[0].type.name}`;
-
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(pokemonName);
-    modal.appendChild(pokemonImage);
-    modal.appendChild(pokemonHeight);
-    modal.appendChild(pokemonType);
-    modalContainer.appendChild(modal);
-
-    modalContainer.addEventListener("click", (e) => {
-      const target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
-    modalContainer.classList.add("is-visible");
+    modalTitle.append(nameElement);
+    modalBody.append(imageElementFront);
+    modalBody.append(imageElementBack);
+    modalBody.append(heightElement);
+    modalBody.append(typesElement);
+    modalBody.append(abilitiesElement);
   }
-
-  function hideModal() {
-    const modalContainer = document.querySelector("#modal-container");
-    modalContainer.classList.remove("is-visible");
-  }
-
-  //hide modal if ESC key is pressed
-  window.addEventListener("keydown", (e) => {
-    const modalContainer = document.querySelector("#modal-container");
-    if (e.key === "Escape" && modalContainer.classList.contains("is-visible")) {
-      hideModal();
-    }
-  });
 
   //The pokemonRepository is defined and housed within an IIFE (Immediately
   //invoked function expression).  This way, you can't directly access it from
@@ -167,7 +161,7 @@ const pokemonRepository = (function () {
     addListItem: addListItem,
     loadList: loadList,
     loadDetails: loadDetails,
-    showDetails: showDetails,
+    showModal: showModal,
   };
 })();
 
