@@ -50,3 +50,8 @@ h1 {
 .modal-title {
   text-transform: capitalize;
 }
+
+.modal-body {
+  background-color: var(--background-color);
+  color: white;
+}
