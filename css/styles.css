@@ -32,138 +32,21 @@ h1 {
   font-weight: 700;
 }
 
-header {
-  position: fixed;
-  text-align: center;
-  width: 100%;
-  padding: 0 5%;
-  height: 75px;
-  background-color: var(--text-color);
+.navbar {
+  margin-bottom: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.logo {
-  height: 75px;
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-transform: capitalize;
 }
 
-.list-container {
-  display: block;
-  padding-top: 75px;
-}
-.pokemon-list {
-  margin: 2% 5%;
-  list-style-type: none;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(10, 1fr);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-}
-
-.pokemonButton {
-  margin: 5px;
-  background: #fdee22;
-  border-radius: 5px;
-  border: 2px solid #25316d;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
-  display: inline-block;
+.card:hover {
   cursor: pointer;
-  color: #25316d;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 5px 0;
-  width: 150px;
+  background-color: #8ca3d8 !important;
+}
+
+.modal-title {
   text-transform: capitalize;
-  text-decoration: none;
-}
-
-.pokemonButton:hover {
-  background: linear-gradient(to bottom, #97d2ec 5%, #66bee4 100%);
-  background-color: #019ad2;
-  transform: scale(1.1, 1.1);
-  transition: 0.3s;
-}
-
-.pokemonButton:active {
-  position: relative;
-  top: 1px;
-}
-
-@media all and (max-width: 650px) {
-  .pokemon-list {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media all and (min-width: 650px) and (max-width: 1050px) {
-  .pokemon-list {
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-}
-
-#modal-container {
-  display: none;
-}
-
-#modal-container.is-visible {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* to show it above other content */
-  z-index: 999;
-
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto;
-
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #dddddf;
-  padding: 15px;
-  width: auto;
-  max-width: 400px;
-  text-align: center;
-  border-radius: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-.modal-close {
-  float: right;
-  border: 0;
-  background: none;
-  color: #777;
-}
-
-.modal-close:hover {
-  text-decoration: underline;
-}
-
-.modal h1 {
-  margin-top: 0;
-  text-transform: capitalize;
-}
-
-.modal p {
-  margin-bottom: 0;
-  text-transform: capitalize;
-  text-align: center;
-}
-
-.modal img {
-  width: 110%;
-  height: auto;
 }
