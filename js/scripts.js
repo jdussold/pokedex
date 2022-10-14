@@ -147,6 +147,30 @@ const pokemonRepository = (function () {
     modalBody.append(abilitiesElement);
   }
 
+  const searchBar = document.getElementById("searchBar");
+  //add even listener for after any keypress
+  searchBar.addEventListener("keyup", (e) => {
+    let pokemonCard = document.querySelectorAll(".card");
+    const searchString = e.target.value.toLowerCase();
+    console.log(searchString);
+    //if searchString is A -> a
+    //if searchString is a -> a
+    //convert name, types, and abilities to lowercase and compare
+    let filteredPokemonList = pokemonList.filter((pokemon) => {
+      return (
+        pokemon.name.toLowerCase().includes(searchString) ||
+        item.types.toLowerCase().includes(searchString) ||
+        item.abilities.toLowerCase().includes(searchString)
+      );
+    });
+    console.log(filteredPokemonList);
+    pokemonCard.forEach(function (pokemon) {
+      if ((filteredPokemonList = false)) {
+        pokemon.style.display = "none";
+      }
+    });
+  });
+
   //The pokemonRepository is defined and housed within an IIFE (Immediately
   //invoked function expression).  This way, you can't directly access it from
   //the outside, which is what protects it.  This makes it nearly impossible to
