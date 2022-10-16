@@ -1,0 +1,61 @@
+/*
+Colors Used
+Text Color: #25316D
+Background Color: # 5F6F94
+Button Color: #FEF5AC
+*/
+
+:root {
+  --background-color: #5f6f94;
+  --text-color: #25316d;
+  --font-size-1: 1rem;
+  --bold-font: 700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400;
+  font-size: var(--font-size-1);
+  line-height: 1.6;
+  color: var(--text-color);
+  background: var(--background-color);
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.navbar {
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.navbar-brand {
+  font-size: 25px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-transform: capitalize;
+}
+
+.card:hover {
+  cursor: pointer;
+  background-color: #8ca3d8 !important;
+}
+
+.modal-title {
+  text-transform: capitalize;
+}
+
+.modal-body {
+  background-color: var(--background-color);
+  color: #f8f9fa;
+}
