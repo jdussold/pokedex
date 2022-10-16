@@ -22,10 +22,8 @@ const pokemonRepository = (function () {
     return pokemonList;
   }
 
-  //defines function to add new pokemon cards and buttons to page.  This takes all the
-  //pokemon from the repository and creates a new "li" element and button.
-  //Buttons are created using the pokemon name as their innerText.  Lastly an
-  //eventListener is added to listen for mouse clicks.
+  //Add new pokemon cards and profile buttons to page. An eventListener is added
+  //to listen for mouse clicks and then run the showDetails function.
   function addListItem(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function () {
       const $row = $(".row");
@@ -59,10 +57,10 @@ const pokemonRepository = (function () {
   }
 
   //fetches a list of pokemon from the api endpoint that was defined as "apiUrl"
-  //earlier.  This list in a JSON format.  The function then goes through each
-  //item in the list and pulls just the item name (pokemon name) and item
-  //details url from the item list.  Using the "add" function that was defined
-  //above, each new pokemon is pushed to the pokemon repository.
+  //earlier.  The list is in a JSON format.  The function goes through each item
+  //in the list and pulls just the item name (pokemon name) and item details url
+  //from the item list.  Using the "add" function that was defined above, each
+  //new pokemon is pushed to the pokemon repository.
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -75,7 +73,8 @@ const pokemonRepository = (function () {
             detailsUrl: item.url,
           };
           add(pokemon);
-          console.log(pokemon); //logs the name and detailsUrl in the console log for each pokemon.
+          //log the name and detailsUrl in the console log for each pokemon.
+          //console.log(pokemon);
         });
       })
       .catch(function (e) {
@@ -83,7 +82,7 @@ const pokemonRepository = (function () {
       });
   }
 
-  //after fetching the item detail url for each pokemon in our list of 90 via
+  //after fetching the item details url for each pokemon in our list of 90 via
   //the "loadList" function, this function will go to each detailsUrl and
   //provide specific details for each pokemon in our list.
   function loadDetails(item) {
@@ -111,8 +110,8 @@ const pokemonRepository = (function () {
       });
   }
 
-  //shows the details (i.e. image url, height, and types) for pokemon
-  //that are clicked.
+  //shows the details (i.e. image url, height, types, etc...) for pokemon that
+  //are clicked.
   function showDetails(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function () {
       showModal(pokemon);
@@ -164,14 +163,6 @@ const pokemonRepository = (function () {
     });
   });
 
-  //The pokemonRepository is defined and housed within an IIFE (Immediately
-  //invoked function expression).  This way, you can't directly access it from
-  //the outside, which is what protects it.  This makes it nearly impossible to
-  //accidentally modify(or access) the shared state, since you always need to
-  //explicitly access it via the repository's exposed functions.  The IIFE then
-  //returns an object with the following keys.  This means whenever you access
-  //the pokemonRepository somewhere in the app, it will represent an object with
-  //these keys.
   return {
     add: add,
     getAll: getAll,
