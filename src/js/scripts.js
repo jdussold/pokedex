@@ -159,7 +159,7 @@ const pokemonRepository = (function () {
     //Re-append only the filteredPokemonList
     filteredPokemonList.forEach(function (pokemon) {
       addListItem(pokemon);
-      console.log(filteredPokemonList);
+      //console.log(filteredPokemonList);
     });
   });
 
