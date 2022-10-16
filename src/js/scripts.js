@@ -155,7 +155,7 @@ const pokemonRepository = (function () {
       return pokemon.name.toLowerCase().includes(searchString);
     });
     // remove all pokemon cards from the document
-    $(".card").css("display", "none");
+    $(".card").remove();
     //Re-append only the filteredPokemonList
     filteredPokemonList.forEach(function (pokemon) {
       addListItem(pokemon);
