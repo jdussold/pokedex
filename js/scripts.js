@@ -58,12 +58,11 @@ const pokemonRepository = (function () {
     });
   }
 
-  //the following function fetches a list of pokemon from the api endpoint
-  //that was defined as "apiUrl" earlier.  It returns this list in a JSON format
-  //and then goes through each item in the list and pulls just the item name
-  //(pokemon name) and item details url from the item list.  Using the "add"
-  //function that was defined above, each new pokemon is pushed to the pokemon
-  //repository.
+  //fetches a list of pokemon from the api endpoint that was defined as "apiUrl"
+  //earlier.  This list in a JSON format.  The function then goes through each
+  //item in the list and pulls just the item name (pokemon name) and item
+  //details url from the item list.  Using the "add" function that was defined
+  //above, each new pokemon is pushed to the pokemon repository.
   function loadList() {
     return fetch(apiUrl)
       .then(function (response) {
@@ -84,7 +83,7 @@ const pokemonRepository = (function () {
       });
   }
 
-  //after fetching the item detail url for each pokemon in our list of 150 via
+  //after fetching the item detail url for each pokemon in our list of 90 via
   //the "loadList" function, this function will go to each detailsUrl and
   //provide specific details for each pokemon in our list.
   function loadDetails(item) {
@@ -112,10 +111,8 @@ const pokemonRepository = (function () {
       });
   }
 
-  //defines a function to log details (i.e. image url, height, and types) for pokemon
-  //that is clicked.  This will be added to the bottom of the console log.
-  //Reminder that the console log is pre-populated with all the names and
-  //detailsURL for all pokemon in our list due to our "loadList" function above.
+  //shows the details (i.e. image url, height, and types) for pokemon
+  //that are clicked.
   function showDetails(pokemon) {
     pokemonRepository.loadDetails(pokemon).then(function () {
       showModal(pokemon);
@@ -147,21 +144,19 @@ const pokemonRepository = (function () {
     modalBody.append(abilitiesElement);
   }
 
-  const searchBar = document.getElementById("searchBar");
+  const searchBar = "#searchBar";
   //add even listener for after any keypress
-  searchBar.addEventListener("keyup", (e) => {
+  $("#searchBar").keyup((e) => {
     let pokemonCard = $(".card");
     const searchString = e.target.value.toLowerCase();
-    console.log(searchString);
+    //console.log(searchString);
     //if searchString is A -> a
     //if searchString is a -> a
-    //convert name, types, and abilities to lowercase and compare
     let filteredPokemonList = pokemonList.filter((pokemon) => {
       return pokemon.name.toLowerCase().includes(searchString);
     });
     // remove all pokemon cards from the document
     $(".card").css("display", "none");
-
     //Re-append only the filteredPokemonList
     filteredPokemonList.forEach(function (pokemon) {
       addListItem(pokemon);
