@@ -1,6 +1,7 @@
 {
   "cSpell.words": [
     "asynchrony",
+    "Autoprefixer",
     "Braviary",
     "Charizard",
     "deferreds",
@@ -8,6 +9,7 @@
     "IIFE",
     "Mimikyu",
     "Pokédex",
-    "Raichu"
+    "Raichu",
+    "WHATWG"
   ]
 }
