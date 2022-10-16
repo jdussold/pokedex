@@ -150,24 +150,22 @@ const pokemonRepository = (function () {
   const searchBar = document.getElementById("searchBar");
   //add even listener for after any keypress
   searchBar.addEventListener("keyup", (e) => {
-    let pokemonCard = document.querySelectorAll(".card");
+    let pokemonCard = $(".card");
     const searchString = e.target.value.toLowerCase();
     console.log(searchString);
     //if searchString is A -> a
     //if searchString is a -> a
     //convert name, types, and abilities to lowercase and compare
     let filteredPokemonList = pokemonList.filter((pokemon) => {
-      return (
-        pokemon.name.toLowerCase().includes(searchString) ||
-        item.types.toLowerCase().includes(searchString) ||
-        item.abilities.toLowerCase().includes(searchString)
-      );
+      return pokemon.name.toLowerCase().includes(searchString);
     });
-    console.log(filteredPokemonList);
-    pokemonCard.forEach(function (pokemon) {
-      if ((filteredPokemonList = false)) {
-        pokemon.style.display = "none";
-      }
+    // remove all pokemon cards from the document
+    $(".card").css("display", "none");
+
+    //Re-append only the filteredPokemonList
+    filteredPokemonList.forEach(function (pokemon) {
+      addListItem(pokemon);
+      console.log(filteredPokemonList);
     });
   });
 
