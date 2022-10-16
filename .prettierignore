@@ -1,3 +1,4 @@
 # Ignore dist fils
 dist/scripts.js
 dist/styles.css
+.eslintrc
