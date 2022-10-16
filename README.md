@@ -1,4 +1,4 @@
-# Pokédex (JavaScrept App)
+# Pokédex (JavaScript App)
 
 ## Objective:
 
